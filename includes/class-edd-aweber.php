@@ -133,7 +133,7 @@ class EDD_Aweber extends EDD_Newsletter {
 				$list    = $account->loadFromUrl( $listURL );
 
 				# create a subscriber
-				$params         = array( 'email' => $email );
+				$params         = array( 'email' => $user_info['email'] );
 				$subscribers    = $list->subscribers;
 				$new_subscriber = $subscribers->create( $params );
 
