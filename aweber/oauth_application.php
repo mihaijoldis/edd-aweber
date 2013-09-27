@@ -234,9 +234,9 @@ class OAuthApplication implements AWeberOAuthAdapter {
     /**
      * _addParametersToUrl
      *
-     * Adds the parameters in associative array $data to the 
+     * Adds the parameters in associative array $data to the
      * given URL
-     * @param String $url       URL 
+     * @param String $url       URL
      * @param array $data       Parameters to be added as a query string to
      *      the URL provided
      * @access protected
@@ -470,12 +470,12 @@ class OAuthApplication implements AWeberOAuthAdapter {
             $msg .= 'firewall allows outbound SSL requests from your web server.';
             $error = array('message' => $msg, 'type' => 'APIUnreachableError',
                            'documentation_url' => 'https://labs.aweber.com/docs/troubleshooting');
-            throw new AWeberAPIException($error, $url);
+            //throw new AWeberAPIException($error, $url);
         }
 
         if($resp->headers['Status-Code'] >= 400) {
             $data = json_decode($resp->body, true);
-            throw new AWeberAPIException($data['error'], $url);
+            //throw new AWeberAPIException($data['error'], $url);
         }
 
         return $resp;

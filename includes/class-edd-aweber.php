@@ -168,7 +168,12 @@ class EDD_Aweber extends EDD_Newsletter {
 			if ( false !== get_option( 'aweber_secrets' ) ) {
 				$options = get_option( 'aweber_secrets' );
 				$msg = $options;
-				return new AWeberAPI( $options['consumer_key'], $options['consumer_secret'] );
+				try {
+					$api = new AWeberAPI( $options['consumer_key'], $options['consumer_secret'] );
+					return $api;
+				} catch( AWeberAPIException $exc ) {
+					return false;
+				}
 			} else {
 				try {
 					list( $consumer_key, $consumer_secret, $access_key, $access_secret ) = AWeberAPI::getDataFromAweberID( $authorization_code );
