@@ -29,21 +29,28 @@ class EDD_Aweber extends EDD_Newsletter {
 
 		global $edd_options;
 
+		$lists_data = get_transient( 'edd_aweber_lists' );
+		if( false === $lists_data ) {
 
-		$lists = array();
+			$aweber = $this->get_authenticated_instance();
 
-		$aweber = $this->get_authenticated_instance();
+			if ( ! is_object( $aweber ) || false === ( $secrets = get_option( 'aweber_secrets' ) ) )
+				return array();
 
-		if ( ! is_object( $aweber ) || false === ( $secrets = get_option( 'aweber_secrets' ) ) )
-			return $lists;
+			$account = $aweber->getAccount( $secrets['access_key'], $secrets['access_secret'] );
+			
+			if( $account ) {
+				foreach ( $account->lists as $list ) {
+					$this->lists[$list->id] = $list->name;
+				}
+			}
 
-		$account = $aweber->getAccount( $secrets['access_key'], $secrets['access_secret'] );
-
-		foreach ( $account->lists as $list ) {
-			$lists[$list->id] = $list->name;
+			set_transient( 'edd_aweber_lists', $this->lists, 24*24*24 );
+		} else {
+			$this->lists = $lists_data;
 		}
 
-		return (array)$lists;
+		return (array) $this->lists;
 	}
 
 	/**
