@@ -108,7 +108,8 @@ class EDD_Newsletter {
 		add_filter( 'edd_metabox_fields_save', array( $this, 'save_metabox' ) );
 		add_filter( 'edd_settings_extensions', array( $this, 'settings' ) );
 		add_action( 'edd_purchase_form_before_submit', array( $this, 'checkout_fields' ), 100 );
-		add_action( 'edd_checkout_before_gateway', array( $this, 'check_for_email_signup' ), 10, 3 );
+		add_action( 'edd_insert_payment', array( $this, 'check_for_email_signup' ), 10, 2 );
+		add_action( 'edd_complete_purchase', array( $this, 'check_for_email_signup' ), 10 );
 
 		$this->init();
 
@@ -138,17 +139,36 @@ class EDD_Newsletter {
 	/**
 	 * Check if a customer needs to be subscribed
 	 */
-	public function check_for_email_signup( $posted, $user_info, $valid_data ) {
+	public function check_for_email_signup( $payment_id = 0, $payment_data = array() ) {
 
 		// Check for global newsletter
 		if( isset( $posted['edd_' . $this->id . '_signup'] ) ) {
 
+			add_post_meta( $payment_id, '_edd_' . $this->id . '_signup', '1' );
+
+		}
+
+	}
+
+	/**
+	 * Complete the subscription when a payment is marked as complete
+	 */
+	public function finish_subscribe( $payment_id = 0 ) {
+
+		$user_info = edd_get_payment_meta_user_info( $payment_id );
+
+		// Check for global newsletter
+		if( get_post_meta( $payment_id, '_edd_' . $this->id . '_signup', true ) ) {
+
 			$this->subscribe_email( $user_info );
+
+			// Cleanup after ourselves
+			delete_post_meta( $payment_id, '_edd_' . $this->id . '_signup' );
 
 		}
 
 		// Check for product specific newsletter
-		$cart_items = edd_get_cart_contents();
+		$cart_items = edd_get_payment_meta_cart_details( $payment_id );
 		if( ! empty( $cart_items ) ) {
 			foreach( $cart_items as $cart_item ) {
 
