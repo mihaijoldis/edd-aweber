@@ -10,7 +10,6 @@ Contributors: JustinSainton, Pippin Williamson
 */
 
 define( 'EDD_AWEBER_STORE_API_URL', 'https://easydigitaldownloads.com' );
-define( 'EDD_AWEBER_PRODUCT_NAME', 'AWeber' );
 define( 'EDD_AWEBER_PATH', dirname( __FILE__ ) );
 
 /*
@@ -19,10 +18,9 @@ define( 'EDD_AWEBER_PATH', dirname( __FILE__ ) );
 |--------------------------------------------------------------------------
 */
 
-if( ! class_exists( 'EDD_License' ) ) {
-	include( EDD_AWEBER_PATH . '/EDD_License_Handler.php' );
+if( class_exists( 'EDD_License' ) ) {
+	$eddmc_license = new EDD_License( __FILE__, 'AWeber', '2.0.3', 'Pippin Williamson' );
 }
-$eddmc_license = new EDD_License( __FILE__, EDD_AWEBER_PRODUCT_NAME, '2.0.3', 'Pippin Williamson' );
 
 
 if( ! class_exists( 'EDD_Newsletter' ) ) {
