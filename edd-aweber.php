@@ -19,10 +19,9 @@ define( 'EDD_AWEBER_PATH', dirname( __FILE__ ) );
 |--------------------------------------------------------------------------
 */
 
-if( ! class_exists( 'EDD_License' ) ) {
-	include( EDD_AWEBER_PATH . '/EDD_License_Handler.php' );
+if( class_exists( 'EDD_License' ) ) {
+	$eddaw_license = new EDD_License( __FILE__, EDD_AWEBER_PRODUCT_NAME, '2.0.3', 'Pippin Williamson' );
 }
-$eddmc_license = new EDD_License( __FILE__, EDD_AWEBER_PRODUCT_NAME, '2.0.3', 'Pippin Williamson' );
 
 
 if( ! class_exists( 'EDD_Newsletter' ) ) {
