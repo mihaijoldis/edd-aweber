@@ -109,7 +109,7 @@ class EDD_Newsletter {
 		add_filter( 'edd_settings_extensions', array( $this, 'settings' ) );
 		add_action( 'edd_purchase_form_before_submit', array( $this, 'checkout_fields' ), 100 );
 		add_action( 'edd_insert_payment', array( $this, 'check_for_email_signup' ), 10, 2 );
-		add_action( 'edd_complete_purchase', array( $this, 'check_for_email_signup' ), 10 );
+		add_action( 'edd_complete_purchase', array( $this, 'finish_subscribe' ), 10 );
 
 		$this->init();
 
