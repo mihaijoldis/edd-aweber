@@ -9,8 +9,6 @@ Author URI: http://zaowebdesign.com
 Contributors: JustinSainton, Pippin Williamson
 */
 
-define( 'EDD_AWEBER_STORE_API_URL', 'https://easydigitaldownloads.com' );
-define( 'EDD_AWEBER_PRODUCT_NAME', 'AWeber' );
 define( 'EDD_AWEBER_PATH', dirname( __FILE__ ) );
 
 /*
@@ -20,7 +18,7 @@ define( 'EDD_AWEBER_PATH', dirname( __FILE__ ) );
 */
 
 if( class_exists( 'EDD_License' ) && is_admin() ) {
-	$eddaw_license = new EDD_License( __FILE__, EDD_AWEBER_PRODUCT_NAME, '2.0.5', 'Pippin Williamson' );
+	$eddaw_license = new EDD_License( __FILE__, 'AWeber', '2.0.5', 'Pippin Williamson' );
 }
 
 
