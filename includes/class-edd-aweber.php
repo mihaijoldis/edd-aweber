@@ -140,8 +140,9 @@ class EDD_Aweber extends EDD_Newsletter {
 
 			$aweber = $this->get_authenticated_instance();
 
-			if ( ! is_object( $aweber ) || false === ( $secrets = get_option( 'aweber_secrets' ) ) )
+			if ( ! is_object( $aweber ) || false === ( $secrets = get_option( 'aweber_secrets' ) ) ) {
 				return false;
+			}
 
 			try {
 				$account = $aweber->getAccount( $secrets['access_key'], $secrets['access_secret'] );
