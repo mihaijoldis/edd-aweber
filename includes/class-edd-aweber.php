@@ -125,6 +125,7 @@ class EDD_Aweber extends EDD_Newsletter {
 		// Retrieve the global list ID if none is provided
 		if( ! $list_id ) {
 			$list_id = ! empty( $edd_options['edd_aweb_list'] ) ? $edd_options['edd_aweb_list'] : false;
+
 			if( ! $list_id ) {
 				return false;
 			}

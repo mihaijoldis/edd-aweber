@@ -142,7 +142,7 @@ class EDD_Newsletter {
 	public function check_for_email_signup( $payment_id = 0, $payment_data = array() ) {
 
 		// Check for global newsletter
-		if( isset( $posted['edd_' . $this->id . '_signup'] ) ) {
+		if( isset( $_POST['edd_' . $this->id . '_signup'] ) ) {
 
 			add_post_meta( $payment_id, '_edd_' . $this->id . '_signup', '1' );
 
