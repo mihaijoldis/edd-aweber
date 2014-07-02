@@ -40,7 +40,7 @@ class EDD_Aweber extends EDD_Newsletter {
 					return array();
 
 				$account = $aweber->getAccount( $secrets['access_key'], $secrets['access_secret'] );
-				
+
 				if( $account ) {
 					foreach ( $account->lists as $list ) {
 						$this->lists[$list->id] = $list->name;
@@ -48,9 +48,9 @@ class EDD_Aweber extends EDD_Newsletter {
 				}
 
 				set_transient( 'edd_aweber_lists', $this->lists, 24*24*24 );
-			
-			} catch ( Exception $e ) { 
-				
+
+			} catch ( Exception $e ) {
+
 				$this->lists = array();
 
 			}
