@@ -3,13 +3,12 @@
 Plugin Name: Easy Digital Downloads - AWeber
 Plugin URL: http://easydigitaldownloads.com/extension/aweber
 Description: Include an AWeber signup option with your Easy Digital Downloads checkout
-Version: 2.0.3
-Author: Justin Sainton
+Version: 2.0.5
+Author: Justin Sainton and Pippin Williamson
 Author URI: http://zaowebdesign.com
 Contributors: JustinSainton, Pippin Williamson
 */
 
-define( 'EDD_AWEBER_STORE_API_URL', 'https://easydigitaldownloads.com' );
 define( 'EDD_AWEBER_PATH', dirname( __FILE__ ) );
 
 /*
@@ -18,8 +17,8 @@ define( 'EDD_AWEBER_PATH', dirname( __FILE__ ) );
 |--------------------------------------------------------------------------
 */
 
-if( class_exists( 'EDD_License' ) ) {
-	$eddmc_license = new EDD_License( __FILE__, 'AWeber', '2.0.3', 'Pippin Williamson' );
+if( class_exists( 'EDD_License' ) && is_admin() ) {
+	$eddaw_license = new EDD_License( __FILE__, 'AWeber', '2.0.5', 'Pippin Williamson' );
 }
 
 
