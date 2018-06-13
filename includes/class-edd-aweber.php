@@ -90,7 +90,7 @@ class EDD_Aweber extends EDD_Newsletter {
 			array(
 				'id'      => 'edd_aweb_checkout_signup_checked',
 				'name'    => __( 'Checkout box default status', 'edd' ),
-				'desc'    => __( 'Check the signup box at checkout by default?', 'edd' ),
+				'desc'    => __( 'Should the newsletter signup checkbox shown during checkout be checked by default?', 'edd' ),
 				'type'    => 'checkbox'
 			),
 			array(
