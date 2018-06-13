@@ -89,7 +89,7 @@ class EDD_Aweber extends EDD_Newsletter {
 			),
 			array(
 				'id'      => 'edd_aweb_checkout_signup_checked',
-				'name'    => __( 'Checkout box default status', 'edd' ),
+				'name'    => __( 'Signup Checked by Default', 'edd' ),
 				'desc'    => __( 'Should the newsletter signup checkbox shown during checkout be checked by default?', 'edd' ),
 				'type'    => 'checkbox'
 			),
@@ -119,15 +119,6 @@ class EDD_Aweber extends EDD_Newsletter {
 		global $edd_options;
 
 		return ! empty( $edd_options['edd_aweb_checkout_signup'] );
-	}
-
-	/**
-	 * Determines if the checkout signup option should be checked
-	 */
-	public function checkout_signup_checked() {
-		global $edd_options;
-
-		return ! empty( $edd_options['edd_aweb_checkout_signup_checked'] ) ? 'checked="checked"' : '';
 	}
 
 	/**
